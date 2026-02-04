@@ -1,0 +1,37 @@
+version: "3.9"   # Compose file format version
+
+services:
+  python-project:
+    build:
+      context: ./python          # Folder where Python Dockerfile is located
+      dockerfile: Dockerfile     # Dockerfile name
+    container_name: python-project
+    working_dir: /app            # Working directory inside the container
+    command: ["python", "main.py"] # Command to run the Python application
+    volumes:
+      - project-vol:/data         # Shared volume project
+    ports:
+      - "5000:5000"             # Uncomment if the Python app exposes a port
+    networks:
+      - project-net              # Custom network
+
+  php-project:
+    build:
+      context: ./php             # Folder where PHP Dockerfile is located
+      dockerfile: Dockerfile     # Dockerfile name
+    container_name: php-project
+    working_dir: /app            # Working directory inside the container
+    command: ["php", "main.php"] # Command to run the PHP application
+    volumes:
+      - project-vol:/data         # Shared volume project
+    ports:
+      - "8000:8000"             # Uncomment if the PHP app exposes a port
+    networks:
+      - project-net              # Custom network
+
+volumes:
+  project-vol:                   # Named volume for sharing code between services
+
+networks:
+  project-net:                   # Custom network for inter-service communication
+    driver: bridge

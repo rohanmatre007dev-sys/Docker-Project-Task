@@ -1,0 +1,8 @@
+# Install the latest version of the "requests" package
+requests
+
+# Install an exact version
+numpy==1.26.4
+
+# Install a version greater than or equal to 1.7.1
+pandas>=1.7.1

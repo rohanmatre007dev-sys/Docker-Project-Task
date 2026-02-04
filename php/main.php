@@ -1,0 +1,1 @@
+<?php echo '<h1>Hello Docker!</h1><h3>Welcome to PHP!</h3>'; ?>
